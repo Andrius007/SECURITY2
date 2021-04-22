@@ -16,7 +16,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
@@ -120,7 +119,7 @@ public class User implements UserDetails {
 
     @Override
     public Set<? extends GrantedAuthority> getAuthorities() {
-        return roles.stream().map(r -> new SimpleGrantedAuthority(r.getRoleName())).collect(Collectors.toSet());
+        return roles;
     }
 
     @Override
