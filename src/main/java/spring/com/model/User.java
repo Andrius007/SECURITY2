@@ -43,7 +43,7 @@ public class User implements UserDetails {
     @Column(name = "Password", nullable = false)
     private String password;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "ID")
 
     private Set<Role> roles;
