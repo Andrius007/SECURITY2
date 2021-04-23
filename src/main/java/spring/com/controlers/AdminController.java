@@ -23,6 +23,8 @@ public class AdminController {
 
     private UserService userService;
     private RoleService roleService;
+    private java.lang.Object Object;
+
 
     @Autowired
     public AdminController(UserService userService, RoleService roleService) {
@@ -54,7 +56,7 @@ public class AdminController {
         Set<Role> setOfRoles = new HashSet<>();
 
         for (String s : arr) {
-            setOfRoles.add(roleService.getRoleById(Integer.valueOf(s)));
+            setOfRoles.add((Role) Object);
         }
 
         user.setRoles(setOfRoles);
@@ -76,7 +78,7 @@ public class AdminController {
         Set<Role> setOfRoles = new HashSet<>();
 
         for (String s : arr) {
-            setOfRoles.add(roleService.getRoleById(Integer.valueOf(s)));
+            setOfRoles.add((Role) Object);
         }
 
         user.setRoles(setOfRoles);

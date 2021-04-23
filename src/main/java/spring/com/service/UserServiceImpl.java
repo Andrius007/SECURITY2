@@ -11,7 +11,7 @@ import java.util.List;
 
 @Transactional
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService{
 
     private UserDAO userDAO;
 
