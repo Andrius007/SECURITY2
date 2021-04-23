@@ -1,6 +1,6 @@
 package spring.com.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,13 +13,12 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService{
 
-    private UserDAO userDAO;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
+    private final UserDAO userDAO;
 
-    @Autowired
-    public UserServiceImpl(UserDAO userDAO) {
+    public UserServiceImpl(PasswordEncoder passwordEncoder, UserDAO userDAO) {
+        this.passwordEncoder = passwordEncoder;
         this.userDAO = userDAO;
     }
 

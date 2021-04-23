@@ -5,6 +5,7 @@ import org.springframework.security.core.GrantedAuthority;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import java.util.Set;

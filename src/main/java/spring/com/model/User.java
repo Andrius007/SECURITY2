@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -42,11 +43,11 @@ public class User implements UserDetails {
     @Column(name = "Password", nullable = false)
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE, CascadeType.REFRESH } )
-    @JoinTable(name = "users_roles",
-            joinColumns = @JoinColumn(name = "User_ID", referencedColumnName = "ID"),
-            inverseJoinColumns = @JoinColumn(name = "Role_ID", referencedColumnName = "ID"))
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID")
+
     private Set<Role> roles;
+
 
     public User() {
 
