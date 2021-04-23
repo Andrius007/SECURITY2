@@ -11,13 +11,13 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
+
+
 
 @Entity
 @Table(name = "users")
@@ -43,10 +43,10 @@ public class User implements UserDetails {
     @Column(name = "Password", nullable = false)
     private String password;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinColumn(name = "ID")
-
-    private Set<Role> roles;
+    @OneToMany(mappedBy = "id"
+            , cascade = CascadeType.ALL
+            , fetch = FetchType.LAZY)
+    private Set<Role> roles = new HashSet<>();
 
 
     public User() {
@@ -123,7 +123,6 @@ public class User implements UserDetails {
     public Set<? extends GrantedAuthority> getAuthorities() {
         return roles;
     }
-
     @Override
     public String getPassword() {
         return password;
