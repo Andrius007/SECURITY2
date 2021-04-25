@@ -3,10 +3,10 @@ package spring.com.dao;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import spring.com.model.User;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+
 
 @Transactional
 @Repository("userDAO")
@@ -33,8 +33,9 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public User getUserByUsername(String username) {
-        return (User) entityManager.createQuery("SELECT u FROM User u WHERE u.email= :email")
+        return entityManager.createQuery("SELECT u FROM User u WHERE u.email= :email", User.class)
                 .setParameter("email", username.toLowerCase())
+                .setHint("javax.persistence.fetchgraph", username)
                 .getSingleResult();
     }
 

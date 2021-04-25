@@ -687,50 +687,94 @@
     </user>
     <table id="205" parent="2" name="roles"/>
     <table id="206" parent="2" name="users"/>
-    <column id="207" parent="205" name="ID">
+    <table id="207" parent="2" name="users_roles"/>
+    <column id="208" parent="205" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
     </column>
-    <column id="208" parent="205" name="Role">
+    <column id="209" parent="205" name="Role">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="209" parent="206" name="ID">
+    <column id="210" parent="205" name="user_ID">
+      <Position>3</Position>
+      <DataType>bigint(20)|0s</DataType>
+    </column>
+    <index id="211" parent="205" name="FKqw3ohdmutyxp27w5d7iyq45e5">
+      <ColNames>user_ID</ColNames>
+      <Type>btree</Type>
+    </index>
+    <foreign-key id="212" parent="205" name="FKqw3ohdmutyxp27w5d7iyq45e5">
+      <ColNames>user_ID</ColNames>
+      <RefTableName>users</RefTableName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <column id="213" parent="206" name="ID">
       <Position>1</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="210" parent="206" name="Email">
+    <column id="214" parent="206" name="Email">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="211" parent="206" name="Name">
+    <column id="215" parent="206" name="Name">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="212" parent="206" name="Password">
+    <column id="216" parent="206" name="Password">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="213" parent="206" name="Profession">
+    <column id="217" parent="206" name="Profession">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="214" parent="206" name="Surname">
+    <column id="218" parent="206" name="Surname">
       <Position>6</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="215" parent="206" name="PRIMARY">
+    <key id="219" parent="206" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
+    <column id="220" parent="207" name="User_ID">
+      <Position>1</Position>
+      <DataType>bigint(20)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="221" parent="207" name="roles_ID">
+      <Position>2</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="222" parent="207" name="UK_dhshlgdwfyeleewc745nchlih">
+      <ColNames>roles_ID</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <key id="223" parent="207" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>User_ID
+roles_ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="224" parent="207" name="UK_dhshlgdwfyeleewc745nchlih">
+      <ColNames>roles_ID</ColNames>
+      <UnderlyingIndexName>UK_dhshlgdwfyeleewc745nchlih</UnderlyingIndexName>
+    </key>
+    <foreign-key id="225" parent="207" name="FKs0e3tn9e2yx5trngmabqf3laa">
+      <ColNames>User_ID</ColNames>
+      <RefTableName>users</RefTableName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
   </database-model>
 </dataSource>

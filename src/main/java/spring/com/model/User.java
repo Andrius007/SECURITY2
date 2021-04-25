@@ -1,9 +1,6 @@
 package spring.com.model;
-
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,14 +8,17 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
 
 
+@NamedEntityGraph(name = "user.roles", attributeNodes = @NamedAttributeNode("roles"))
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
@@ -43,9 +43,9 @@ public class User implements UserDetails {
     @Column(name = "Password", nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "id"
-            , cascade = CascadeType.ALL
+    @OneToMany(cascade = CascadeType.ALL
             , fetch = FetchType.LAZY)
+    @JoinColumn (name = "ID")
     private Set<Role> roles = new HashSet<>();
 
 

@@ -1,13 +1,11 @@
 package spring.com.model;
 
 import org.springframework.security.core.GrantedAuthority;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
+import javax.persistence.FetchType;
 import javax.persistence.Id;
-
-
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -22,12 +20,18 @@ public class Role implements GrantedAuthority {
     private String roleName;
 
 
-    public Role() {
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
 
-    public Role(Integer id, String roleName) {
+    public Role(Integer id, String roleName, User user) {
         this.id = id;
         this.roleName = roleName;
+        this.user = user;
+    }
+
+
+    public Role() {
+
     }
 
     public Integer getId() {

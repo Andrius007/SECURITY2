@@ -3,10 +3,10 @@ package spring.com.dao;
 import org.springframework.stereotype.Repository;
 import spring.com.model.Role;
 import spring.com.model.User;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+
 
 @Repository("roleDAO")
 public class RoleDAOImpl implements RoleDAO {
@@ -24,15 +24,16 @@ public class RoleDAOImpl implements RoleDAO {
     }
 
     @Override
-    public List<Role> getAllRoles() {
+    public List getAllRoles() {
         return entityManager.createQuery("SELECT r FROM Role r").getResultList();
     }
 
 
     @Override
     public Role getRoleByName(String roleName) {
-        return (Role) entityManager.createQuery("SELECT r FROM Role r WHERE r.roleName= :name")
+        return entityManager.createQuery("SELECT r FROM Role r WHERE r.roleName= :name",Role.class)
                 .setParameter("name", roleName)
+                .setHint("javax.persistence.fetchgraph", roleName)
                 .getSingleResult();
     }
 
