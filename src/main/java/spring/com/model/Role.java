@@ -20,13 +20,10 @@ public class Role implements GrantedAuthority {
     private String roleName;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
 
     public Role(Integer id, String roleName, User user) {
         this.id = id;
         this.roleName = roleName;
-        this.user = user;
     }
 
 

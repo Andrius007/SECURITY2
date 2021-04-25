@@ -22,7 +22,7 @@ public class UserDAOImpl implements UserDAO {
 
 
     @Override
-    public List<User> getAllUsers() {
+    public List getAllUsers() {
         return entityManager.createQuery("SELECT u FROM User u").getResultList();
     }
 
